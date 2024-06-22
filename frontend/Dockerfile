@@ -1,17 +1,29 @@
-FROM node:14
+# Usa una imagen oficial de Node.js como imagen base
+FROM node:14-alpine AS build
 
+# Establece el directorio de trabajo en el contenedor
 WORKDIR /app
 
+# Copia los archivos de package.json y package-lock.json al directorio de trabajo
 COPY package*.json ./
 
+# Instala las dependencias del proyecto
 RUN npm install
 
+# Copia el resto del código de la aplicación al directorio de trabajo
 COPY . .
 
+# Construye la aplicación para producción
 RUN npm run build
 
-RUN npm install -g serve
+# Usa una imagen base de Nginx para servir la aplicación
+FROM nginx:alpine
 
-EXPOSE 5000
+# Copia los archivos estáticos construidos por React desde la imagen anterior
+COPY --from=build /app/build /usr/share/nginx/html
 
-CMD ["sh", "-c", "serve -s build -l ${PORT:-5000}"]
+# Exponer el puerto 80 para que pueda ser accesible
+EXPOSE 80
+
+# Comando para ejecutar Nginx
+CMD ["nginx", "-g", "daemon off;"]

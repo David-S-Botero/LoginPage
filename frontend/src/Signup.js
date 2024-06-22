@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import './Signup.css';
 
 const Signup = () => {
@@ -12,7 +12,7 @@ const Signup = () => {
     phone: ''
   });
   
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -25,7 +25,7 @@ const Signup = () => {
     e.preventDefault();
     // Aquí puedes agregar la lógica para enviar los datos al backend
     console.log('Form submitted', formData);
-    history.push('/login');
+    navigate('/login');
   };
 
   return (
