@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./scripts/tables_definition.sql:/docker-entrypoint-initdb.d/1-schema.sql
+      - ./scripts/previous_inserts.sql:/docker-entrypoint-initdb.d/2-schema.sql
+    networks: ['netdbpostgres']
+
+networks: {netdbpostgres: {}}
+volumes:
+  postgres-data:
