@@ -1,19 +1,19 @@
 from datetime import date
 
-from pydantic.v1 import BaseModel
+from pydantic import EmailStr, BaseModel
+from typing import Optional
 
 
 class UserCreate(BaseModel):
     nombre: str
     apellido: str
-    numero_documento: int
-    celular: int
+    numero_documento: str
+    celular: str
     fecha_nacimiento: date
-    correo: str
+    correo: EmailStr
     clave: str
-    id_rol: int
 
 
 class UserLogin(BaseModel):
-    correo: str
+    correo: EmailStr
     clave: str

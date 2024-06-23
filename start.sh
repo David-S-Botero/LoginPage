@@ -1,4 +1,4 @@
-export DATA_POSTGRES="./postgres-data"
+export DATA_POSTGRES="./Database/postgres-data"
 if [ -d "$DATA_POSTGRES" ]
 then
    echo "El directorio ${DATA_POSTGRES} existe"

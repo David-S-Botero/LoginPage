@@ -23,7 +23,6 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
         fecha_nacimiento=user.fecha_nacimiento,
         correo=user.correo,
         clave=hashed_password,
-        id_rol=user.id_rol,
     )
     db.add(db_user)
     db.commit()

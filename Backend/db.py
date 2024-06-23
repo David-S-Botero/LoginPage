@@ -1,3 +1,5 @@
+import os
+
 from fastapi import Depends
 from sqlalchemy import create_engine, Column, Integer, String, Date
 from sqlalchemy.ext.declarative import declarative_base
@@ -5,7 +7,7 @@ from sqlalchemy.orm import sessionmaker, Session
 from passlib.context import CryptContext
 from sqlalchemy.sql.annotation import Annotated
 
-DATABASE_URL = "sqlite:///./test.db"
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
