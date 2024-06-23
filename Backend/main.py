@@ -9,9 +9,9 @@ from models import User
 app = FastAPI()
 
 
-@app.post("/register/")
-def register_user(user: UserCreate, db: db_dependency):
-    db_user = db.query(User).filter(User.nombre == user.correo).first()
+@app.post("/register/", response_model=None)
+def register_user(user: UserCreate, db: Session = Depends(get_db)):
+    db_user = db.query(User).filter(User.correo == user.correo).first()
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
     hashed_password = get_password_hash(user.clave)
@@ -31,8 +31,8 @@ def register_user(user: UserCreate, db: db_dependency):
     return {"message": "User registered successfully"}
 
 
-@app.post("/login/")
-def login_user(user: UserLogin, db: db_dependency):
+@app.post("/login/", response_model=None)
+def login_user(user: UserLogin, db: Session = Depends(get_db)):
     db_user = db.query(User).filter(User.correo == user.correo).first()
     if not db_user or not verify_password(user.clave, db_user.clave):
         raise HTTPException(status_code=400, detail="Invalid credentials")
