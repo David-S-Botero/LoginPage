@@ -5,12 +5,12 @@ import './Signup.css';
 
 function Signup() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    nombre: '',
+    apellido: '',
     email: '',
-    dateOfBirth: '',
-    password: '',
-    phone: '',
+    fechaNacimiento: '',
+    contrasena: '',
+    telefono: '',
   });
 
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ function Signup() {
       console.log(response.data)   
       navigate('/welcome');
     } catch (error) {
-      console.log('Login failed', error);
+      console.log('Fallo Login', error);
     }
   };
 
@@ -38,23 +38,23 @@ function Signup() {
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="firstName">First Name</label>
+          <label htmlFor="nombre">Nombre</label>
           <input
             type="text"
-            id="firstName"
-            name="firstName"
-            value={formData.firstName}
+            id="nombre"
+            name="nombre"
+            value={formData.nombre}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="lastName">Last Name</label>
+          <label htmlFor="apellido">Apellido</label>
           <input
             type="text"
-            id="lastName"
-            name="lastName"
-            value={formData.lastName}
+            id="apellido"
+            name="apellido"
+            value={formData.apellido}
             onChange={handleChange}
             required
           />
@@ -71,34 +71,34 @@ function Signup() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="dateOfBirth">Date of Birth</label>
+          <label htmlFor="fechaNacimiento">Fecha de Nacimiento</label>
           <input
             type="date"
-            id="dateOfBirth"
-            name="dateOfBirth"
-            value={formData.dateOfBirth}
+            id="fechaNacimiento"
+            name="fechaNacimiento"
+            value={formData.fechaNacimiento}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="contraasena">Contrasena</label>
           <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
+            type="contrasena"
+            id="contrasena"
+            name="contrasena"
+            value={formData.contrasena}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="phone">Phone</label>
+          <label htmlFor="telefono">Telefono</label>
           <input
             type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
+            id="telefono"
+            name="telefono"
+            value={formData.telefono}
             onChange={handleChange}
             required
           />

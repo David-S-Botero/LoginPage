@@ -4,16 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [correo, setEmail] = useState('');
+  const [clave, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await axios.post('http://localhost:8000/login/', { 
-        email, 
-        password 
+        correo, 
+        clave 
       });
       console.log(response.data);
       navigate('/greeting/');
@@ -33,7 +33,7 @@ function Login() {
           <label>Email:</label>
           <input
             type="text"
-            value={email}
+            value={correo}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -41,7 +41,7 @@ function Login() {
           <label>Password:</label>
           <input
             type="password"
-            value={password}
+            value={clave}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
