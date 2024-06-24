@@ -7,10 +7,11 @@ function Signup() {
   const [formData, setFormData] = useState({
     nombre: '',
     apellido: '',
-    email: '',
-    fechaNacimiento: '',
-    contrasena: '',
-    telefono: '',
+    correo: '',
+    fecha_nacimiento: '',
+    clave: '',
+    celular: '',
+    numero_documento: '',
   });
 
   const navigate = useNavigate();
@@ -60,45 +61,56 @@ function Signup() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="correo">Email</label>
           <input
             type="email"
-            id="email"
-            name="email"
-            value={formData.email}
+            id="correo"
+            name="correo"
+            value={formData.correo}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="fechaNacimiento">Fecha de Nacimiento</label>
+          <label htmlFor="fecha_nacimiento">Fecha de Nacimiento</label>
           <input
             type="date"
-            id="fechaNacimiento"
-            name="fechaNacimiento"
-            value={formData.fechaNacimiento}
+            id="fecha_nacimiento"
+            name="fecha_nacimiento"
+            value={formData.fecha_nacimiento}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="contraasena">Contrasena</label>
+          <label htmlFor="clave">clave</label>
           <input
-            type="contrasena"
-            id="contrasena"
-            name="contrasena"
-            value={formData.contrasena}
+            type="password"
+            id="clave"
+            name="clave"
+            value={formData.clave}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="telefono">Telefono</label>
+          <label htmlFor="celular">celular</label>
           <input
             type="tel"
-            id="telefono"
-            name="telefono"
-            value={formData.telefono}
+            id="celular"
+            name="celular"
+            value={formData.celular}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="numero_documento">Número de documento</label>
+          <input
+            type="text"
+            id="numero_documento"
+            name="numero_documento"
+            value={formData.numero_documento}
             onChange={handleChange}
             required
           />
