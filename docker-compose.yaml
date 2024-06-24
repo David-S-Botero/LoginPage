@@ -2,13 +2,13 @@ version: '3.1'
 services:
   db:
     image: postgres
-    restart: always
+    restart: always 
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=mydatabase
     ports:
-      - 5432:5432
+      - 5433:5432
     volumes:
       - ./Database/postgres-data:/var/lib/postgresql/data
       - ./Database/scripts/tables_definition.sql:/docker-entrypoint-initdb.d/1-schema.sql
@@ -22,7 +22,7 @@ services:
     volumes:
       - ./Backend:/app
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/mydatabase
+      - DATABASE_URL=postgresql://postgres:postgres@db:5430/mydatabase
     depends_on:
       - db
     networks:
@@ -33,7 +33,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "81:80"
     depends_on:
       - back
     networks:

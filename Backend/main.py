@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
 from fastapi import FastAPI, Depends, HTTPException
-
+from fastapi.middleware.cors import CORSMiddleware
 from Schemas import UserCreate, UserLogin
 from db import get_db, get_password_hash, verify_password, db_dependency
 from models import User
@@ -9,7 +9,7 @@ from models import User
 app = FastAPI()
 
 
-@app.post("/register/", response_model=None)
+@app.post("/signup/", response_model=None)
 def register_user(user: UserCreate, db: Session = Depends(get_db)):
     db_user = db.query(User).filter(User.correo == user.correo).first()
     if db_user:
@@ -36,3 +36,17 @@ def login_user(user: UserLogin, db: Session = Depends(get_db)):
     if not db_user or not verify_password(user.clave, db_user.clave):
         raise HTTPException(status_code=400, detail="Invalid credentials")
     return {"message": "Login successful", "user_id": db_user.id}
+
+
+origins = [
+    "http://localhost",
+    "http://localhost:81",  
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["*"],
+)

@@ -1,0 +1,9 @@
+.greeting-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.greeting-container h1 {
+    font-size: 2em;
+    color: #333;
+}
